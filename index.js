@@ -1,22 +1,24 @@
 const { fifaData } = require('./fifa.js')
 
 // ⚽️ M  V P ⚽️ //
-
+// console.log(typeof(fifaData));
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Practice accessing data by console.log-ing the following pieces of data note. 
 
-💡 HINT: You may want to filter the data first 😉*/
+// 💡 HINT: You may want to filter the data first 😉*/
+// const final14 = fifaData.filter((val) => val.Year == 2014 && val.Stage == 'Final');
+// console.log(final14);
 
-//(a) Home Team name for 2014 world cup final
-
-//(b) Away Team name for 2014 world cup final
-
-//(c) Home Team goals for 2014 world cup final
-
-//(d) Away Team goals for 2014 world cup final
-
-//(e) Winner of 2014 world cup final */
-
+// //(a) Home Team name for 2014 world cup final
+// console.log(final14[0]['Home Team Name']);
+// //(b) Away Team name for 2014 world cup final
+// console.log(final14[0]['Away Team Name']);
+// //(c) Home Team goals for 2014 world cup final
+// console.log(final14[0]['Home Team Goals']);
+// //(d) Away Team goals for 2014 world cup final
+// console.log(final14[0]['Away Team Goals']);
+// //(e) Winner of 2014 world cup final */
+// console.log(final14[0]['Win conditions']);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
@@ -26,11 +28,11 @@ Use getFinals to do the following:
 💡 HINT - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-    /* code here */
+function getFinals(arr) {
+    const finals = arr.filter((val) => val.Stage == 'Final');
+        return finals;
  }
-
-
+getFinals(fifaData);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -38,10 +40,12 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function as the second parameter that will take getFinals from task 2 as an argument
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(arr, callback) {
+    const finals = callback(arr);
+    const finalsYears = finals.map((val) => val.Year);
+    return finalsYears;
 }
-
+getYears(fifaData, getFinals);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
