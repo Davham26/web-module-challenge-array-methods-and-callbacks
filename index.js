@@ -41,9 +41,7 @@ Use the higher-order function called getYears to do the following:
 3. Return an array called years containing all of the years in the getFinals data set*/
 
 function getYears(arr, callback) {
-    const finals = callback(arr);
-    const finalsYears = finals.map((val) => val.Year);
-    return finalsYears;
+    return callback(arr).map(val => val.Year);
 }
 getYears(fifaData, getFinals);
 
@@ -56,11 +54,11 @@ Use the higher-order function getWinners to do the following:
 💡 HINT: Don't worry about ties for now (Please see the README file for info on ties for a stretch goal.)
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(arr, callback) {
+    return callback(arr).map(val => val['Home Team Goals'] > val['Away Team Goals'] ? 
+    val['Home Team Name'] : val['Away Team Name']);
 }
-
-
+getWinners(fifaData, getFinals);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -73,10 +71,16 @@ Use the higher-order function getWinnersByYear to do the following:
 💡 HINT: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(arr, cb2,cb3, cb4) {
+    const winners = cb4(arr, cb2); 
+    const years = cb3(arr,cb2);
+    const winnerByYear = [];
+    for (let i = 0; i < years.length; i++){
+        winnerByYear.push(`In ${years[i]}, ${winners[i]} won the world cup!`);
+    }
+    return winnerByYear;
 }
-
+getWinnersByYear(fifaData, getFinals, getYears, getWinners);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
